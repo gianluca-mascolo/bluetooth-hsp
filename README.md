@@ -20,15 +20,21 @@ Using the `activate_hsp.sh` help you bring ofono up automatically.
 
 Howto source [here](https://wiki.archlinux.org/index.php/Bluetooth_headset#HFP_not_working_with_PulseAudio)  
 
-`~]$ sudo pacman -S ofono phonesim psmisc screen`
+```
+~]$ sudo pacman -S ofono phonesim psmisc screen
+```
+
 Edit `/etc/ofono/phonesim.conf` (as root) and insert
+
 ```
 [phonesim]
 Address=127.0.0.1
 Driver=phonesim
 Port=12345
 ```
+
 Now
+
 ```
 ~]$ sudo systemctl enable ofono && sudo systemctl start ofono
 ~]$ [ -d ~/bin ] || mkdir ~/bin
@@ -50,4 +56,5 @@ PhoneSim Modem
 Online: 1 Powered: 1
 ~]$ 
 ```
+
 Connect your bluetooth headset. You can now switch to HSP/HFP.
