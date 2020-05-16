@@ -5,13 +5,18 @@ Activate Bluetooth HSP in pulseaudio
 
 A bluetooth headset is normally linked to pulseaudio in mode A2DP Sink (High Fidelity Playback).  
 To use microphone in bluetooth headset, you need to switch bluetooth device in mode HSP/HFP (Headset Head Unit).  
-If you try to switch in HSP/HFP and you get the error `failed to change profile to headset_head_unit` you may try to use this script. This is because
+In Arch Linux when you try to switch in HSP/HFP, you may get the error:
+`failed to change profile to headset_head_unit`
+This is because:
 
 > Currently HFP support in pulseaudio is only available through oFono.
 >
 > -- <cite>[Source](https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Bluetooth/)</cite>
 
-## Arch Linux
+## What?
+Using the `activate_hsp.sh` help you bring ofono up automatically.
+
+## Howto (Arch Linux)
 
 Howto source [here](https://wiki.archlinux.org/index.php/Bluetooth_headset#HFP_not_working_with_PulseAudio)  
 
