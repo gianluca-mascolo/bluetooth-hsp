@@ -62,6 +62,7 @@ echo "Checking required binaries..."
 RequireBin list-modems # https://github.com/rilmodem/ofono/blob/10cbabb4608c2e7ea166436b19bae54b184f382f/test/list-modems
 RequireBin screen
 RequireBin killall
+RequireBin phonesim
 
 echo "Checking phonesim status..."
 screen -ls phonesim 2> /dev/null &> /dev/null
