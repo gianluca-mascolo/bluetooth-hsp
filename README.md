@@ -39,7 +39,9 @@ Now
 ~]$ sudo systemctl enable ofono && sudo systemctl start ofono
 ~]$ [ -d ~/bin ] || mkdir ~/bin
 ~]$ curl -s https://raw.githubusercontent.com/rilmodem/ofono/10cbabb4608c2e7ea166436b19bae54b184f382f/test/list-modems > ~/bin/list-modems
+~]$ curl -s https://raw.githubusercontent.com/gianluca-mascolo/bluetooth-hsp/master/activate_hsp.sh  > ~/bin/activate_hsp.sh
 ~]$ chmod 0755 ~/bin/list-modems
+~]$ chmod 0755 ~/bin/activate_hsp.sh
 ~]$ ~/bin/activate_hsp.sh
 Checking required binaries...
 list-modems: Found
