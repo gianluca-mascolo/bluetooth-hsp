@@ -16,8 +16,15 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+#    Usage:
+#    Just run ./activate_hsp.sh without any options
+#    It will start phonesim in background using screen if not already running.
+#    Pulseaudio is reloaded if needed
+
 export PATH=~/bin:/bin:/usr/bin:/usr/local/bin
 
+# RequireBin <name>
+# Exit the program if name executable is not in your path.
 function RequireBin {
 [ "x$1" = "x" ] && return 1
 hash "$1" 2> /dev/null
@@ -32,6 +39,9 @@ if ( [ $? -ne 0 ] ); then {
   fi
 }
 
+# PhonesimStatus [show]
+# Return 0 if phonesim is running with success, or 1 on error.
+# With 'show' argument print status in output
 function PhonesimStatus() {
  local Online
  local Powered
@@ -67,7 +77,7 @@ RequireBin phonesim
 echo "Checking phonesim status..."
 screen -ls phonesim 2> /dev/null &> /dev/null
 if ( [ $? -ne 0 ] ); then {
-  killall -9 phonesim
+  killall -9 phonesim # assure that this will be the only phonesim process running.
   echo "Starting Phonesim..."
   screen -d -m -S phonesim /usr/bin/phonesim -p 12345 /usr/share/phonesim/default.xml
   sleep 1
@@ -88,8 +98,8 @@ if ( [ $? -ne 0 ] ); then {
   echo "Put modem online"
   dbus-send --print-reply --system --dest=org.ofono /phonesim org.ofono.Modem.SetProperty string:"Online" variant:boolean:true
   sleep 1
-  PhonesimStatus && pactl exit
+  PhonesimStatus && pactl exit # Restart pulseaudio if successfully configured.
 }
 fi
 
-PhonesimStatus show || exit 1
+PhonesimStatus show || exit 1 # Final exit status of the whole script.
